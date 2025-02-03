@@ -1,0 +1,9 @@
+.section{
+    height: auto; /* Cada sección ocupa el 100% de la altura de la ventana */
+    padding: 20px;
+    border-bottom: 2px solid aqua;
+    box-shadow: 0 2px 22px #149CEA;
+    background-color: rgb(43, 43, 43);
+    margin: 0;
+   
+}
