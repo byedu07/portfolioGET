@@ -160,6 +160,8 @@
     transform: scale(1.1);
 }
 
+
+
 .nombre-presentacion {
     margin-top: 15px;
     margin-bottom: 0px;
@@ -272,3 +274,5 @@
 .card:hover .face.front b {
     font-size: 2em;
 }
+
+
