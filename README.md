@@ -1,3 +1,3 @@
 # portfolioGET
 
-https://byedu07.github.io/portfolioGET/
+https://georgeeduardtp.github.io/portfolioGET/
