@@ -36,7 +36,6 @@
 #contenedor-principal {
     display: flex; /* Flexbox para los contenedores */
     justify-content: space-between; /* Alinea los contenedores de manera horizontal */
-    
 }
 
 #contenedor-inicio {
@@ -51,6 +50,7 @@
     background-color: #1a1a1a;
     box-shadow: inset 0px 0px 25px #1479EA;
 }
+
 #github {
     padding: 10px 20px;
     text-transform: uppercase;
@@ -98,12 +98,13 @@
     box-shadow: inset 0px 0px 25px #1479EA;
 }
 
-
-
 /* Contenedor para la imagen */
+/* Estilos para la imagen y contenedor */
+/* Estilos para la imagen y contenedor */
 .contenedor-imagen-presentacion {
     background-color: #272727;
-    width: 50%;
+    border-radius: 15px;
+    width: 55%;
     height: 700px;
     display: flex;
     justify-content: flex-start;
@@ -111,27 +112,21 @@
     margin-left: 20px;
     margin-top: 20px;
     border: 2px solid aqua;
-    box-shadow: 0 0 15px aqua; /* Sombra inicial más suave */
-    
+    box-shadow: 0 0 10px aqua; /* Sombra inicial más suave */
     transition: border-color 1s ease, box-shadow 1s ease; /* Transición de 1 segundo */
 }
 
 .contenedor-imagen-presentacion:hover {
-    border-color: #14ea1f; /* Color del borde al pasar el mouse */
-    box-shadow: 0 4px 30px #6de673; /* Sombra al pasar el mouse */
-    
+    border-color: rgb(110, 248, 248); /* Color del borde al pasar el mouse */
+    box-shadow: 0 4px 30px rgb(110, 248, 248); /* Sombra al pasar el mouse */
 }
 
+/* Contenedor de la imagen */
 .imagen-presentacion {
-    background-color: #272727;
     color: white;
     padding: 20px;
     margin: 20px;
-    border-style: solid;
-    border-color: aqua;
     border-radius: 10px;
-    box-shadow: 0 2px 8px #149CEA;
-    box-shadow: inset 0px 0px 15px aqua;
     width: 200px;
     height: auto;
     display: flex;
@@ -140,28 +135,44 @@
     align-items: center;
     text-align: center;
     transition: transform 0.3s ease;
-    transition: border-color 0.8s ease, box-shadow 0.8s ease;
+    position: relative; /* Asegura que el rectángulo se posicione correctamente */
 }
 
+/* Estilo para la imagen */
 .imagen-presentacion img {
-    width: 90%;
-    height: 90%;
+    width: 90%;  /* Hacer que la imagen ocupe el 90% del ancho del contenedor */
+    height: auto;
     border-radius: 10px;
     object-fit: cover;
     display: block;
     cursor: pointer;
     border-style: solid;
     border-color: aqua;
-    box-shadow: 0 2px 8px #149CEA;
-    transition: transform 0.3s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+    box-shadow: 0 0px 8px #149CEA;
+    transition: transform 0.3s ease, border-color 0.8s ease, box-shadow 1s ease-in-out; /* Transición más suave para la sombra */
+    animation: pulsarSombra 1.5s ease-in-out infinite alternate; /* Aumentamos el tiempo de animación */
 }
+
+/* Animación para la variación de la intensidad de box-shadow */
+@keyframes pulsarSombra {
+    0% {
+        box-shadow: 0 0px 8px #149CEA; /* Sombras con intensidad baja */
+    }
+    50% {
+        border-color: #ffffff;
+        box-shadow: 0 0px 18px aqua; /* Sombras más intensas */
+    }
+    100% {
+        box-shadow: 0 0px 8px #149CEA; /* Regresa a la sombra original */
+    }
+}
+
 
 .imagen-presentacion img:hover {
     transform: scale(1.1);
 }
 
-
-
+/* Estilo para el texto que aparece dentro del rectángulo */
 .nombre-presentacion {
     margin-top: 15px;
     margin-bottom: 0px;
@@ -175,36 +186,49 @@
     transform: scale(1.1);
 }
 
-.imagen-presentacion:hover {
-    border-color: #14ea1f;
-    box-shadow: 0 2px 8px #6de673;
-}
-
-.imagen-presentacion:hover img{
-    border-color: #14ea1f;
-    box-shadow: 0 2px 8px #6de673;
+.imagen-presentacion:hover img {
+    border-color: rgb(110, 248, 248);
+    box-shadow: 0 2px 15px rgb(110, 248, 248);
 }
 
 .imagen-presentacion:hover .nombre-presentacion {
-    color: #14ea1f;
+    color: rgb(110, 248, 248);
     transition: color 0.5s ease, transform 0.5s ease;
 }
 
-
-
-
-
-
-/* Contenedor de las tarjetas */
-#tarjetas {
-    margin-left: 20px;
-    display: flex;  /* Flexbox para las tarjetas */
-    flex-wrap: wrap; /* Para que las tarjetas se ajusten en nuevas filas si el contenedor es pequeño */
-    gap: 20px; /* Espacio entre las tarjetas */
-    justify-content: flex-start; /* Alineación de las tarjetas a la izquierda */
+/* Nuevas reglas para el rectángulo que aparece con animación */
+.imagen-presentacion .rectangulo-hover {
+    position: absolute;
+    bottom: -50px;  /* Ajustamos la distancia para que esté justo debajo de la imagen */
+    left: 5%;  /* Lo alineamos un poco a la izquierda */
+    width: 90%;  /* El ancho del rectángulo será igual al 90% del ancho de la imagen */
+    height: 50px;
+    background-color: #272727;  /* Fondo oscuro con transparencia */
+    border: 2px solid aqua;  /* Borde sólido */
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgb(110, 248, 248);
+    color: white;
+    text-align: center;
+    line-height: 50px; /* Para centrar verticalmente el texto */
+    opacity: 0;  /* Comienza oculto */
+    transform: translateY(-20px);  /* Inicialmente un poco hacia abajo */
+    transition: all 0.4s ease-out;  /* Transición suave */
 }
 
 
+/* Estilo para el texto dentro del rectángulo */
+.rectangulo-hover p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Animación de aparición al pasar el ratón sobre la imagen (animación inversa) */
+.imagen-presentacion:hover .rectangulo-hover {
+    opacity: 1;  /* Lo hace visible */
+    transform: translateY(0); /* El rectángulo sube desde la parte inferior */
+}
 
 
 /* Tarjetas individuales */
@@ -223,7 +247,6 @@
     background: #000;
     border-radius: 15px;
     box-shadow: 0 2px 8px aqua;
-    
 }
 
 /* Front and back face styles */
@@ -236,7 +259,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 /* Face back */
@@ -263,7 +285,7 @@
     font-size: 4.1em;
     color: #fff;
     transition: 0.5s;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0px 7px rgb(0, 225, 255);
     z-index: 10;
 }
 
@@ -275,4 +297,135 @@
     font-size: 2em;
 }
 
+/* Contenedor de las tarjetas con Flexbox */
+#tarjetas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten a una nueva fila si no caben en una sola fila */
+    justify-content: center; /* Centra las tarjetas en el contenedor */
+    align-items: center; /* Alinea las tarjetas verticalmente en el centro */
+    gap: 10px; /* Reducido el espacio entre tarjetas */
+}
+
+/* Asegura que las tarjetas no ocupen todo el ancho del contenedor */
+.tarjeta-lenguaje {
+    width: 30%; /* Cada tarjeta ocupará el 30% del contenedor */
+    height: auto; /* Ajusta la altura automáticamente */
+    margin-bottom: 20px; /* Espacio entre las filas de las tarjetas */
+}
+
+
+/* Estilos del botón */
+#diseno-web {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    color: #ffffff80;
+    text-shadow: none;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #ffffff80;
+    transition: 1s ease;
+    user-select: none;
+}
+
+#diseno-web:hover {
+    color: #ffffff;
+    background: #008cff;
+    border: 1px solid aqua;
+    text-shadow: 0 0 5px aqua, 0 0 10px aqua, 0 0 20px aqua;
+    box-shadow: 0 0 5px #149CEA, 0 0 20px #149CEA, 0 0 50px #149CEA, 0 0 100px #149CEA;
+}
+
+/* Estilos del rectángulo animado */
+#popup {
+    position: absolute;
+    width: 200px;
+    height: 230px;
+    background-color: #272727;
+    border-radius: 15px;
+    border: 2px solid aqua;
+    box-shadow: 0 2px 8px #149CEA;
+    box-shadow: inset 0px 0px 15px aqua;
+    display: none;
+    opacity: 0;
+    transform-origin: top left;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Botón para cerrar */
+#close-popup {
+    border-style: solid;
+    border: 2px solid aqua;
+    box-shadow: 0 0 10px aqua;
+    border-radius: 10px;
+    background-color: #272727;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    display: block;
+    margin-top: 0px; /* Puedes ajustar este valor a algo menor para acercarlo más al margen superior */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.8s ease, box-shadow 0.8s ease, width 0.2s ease;
+    width: 50px;
+}
+
+/* Hover */
+#close-popup:hover {
+    border-style: solid;
+    border-color: aqua;
+    box-shadow: 0px 1px 15px rgb(159, 255, 255);
+    background-color: #272727;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 55px;
+}
+
+/* Estilo para el nuevo botón dentro del popup */
+#popup button#accion-popup {
+    border-style: solid;
+    border: 1px solid aqua;
+    box-shadow: 0 0 10px aqua;
+    border-radius: 10px;
+    background-color: #272727;
+    color: white;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: flex; /* Utilizamos flexbox para organizar los elementos en fila */
+    align-items: center; /* Alineamos el texto y la imagen verticalmente */
+    justify-content: center; /* Centramos los elementos dentro del botón */
+    text-align: center;
+    width: 100%;
+    transition: transform 0.3s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Ajustamos la imagen dentro del botón */
+#popup button#accion-popup img {
+    width: 35px;  /* Ajustamos el tamaño de la imagen para que se vea más pequeño */
+    height: 35px;
+    margin-left: 6px;  /* Reducimos el espacio entre la imagen y el texto */
+}
+
+/* Efecto hover para el botón de 'Descargar PDF' */
+#popup button#accion-popup:hover {
+    border-color: aqua;
+    box-shadow: 0px 1px 15px rgb(159, 255, 255);
+    background-color: #272727;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
 

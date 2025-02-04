@@ -1,9 +1,7 @@
-#proyectos{
-    color: rgb(255, 255, 255);
-}
 #proyectos {
-    width: 100%; /* Asegura que el contenedor principal ocupe el 100% del ancho */
-    height: 100vh; /* Ajusta la altura según tus necesidades */
+    color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,36 +10,52 @@
 
 .contenedor-proyecto {
     width: 90%;
-    height: 90%; /* Ocupa el 100% de la altura del contenedor #proyectos */
+    height: 90%;
     display: flex;
-    
 }
 
 .texto-proyecto-div {
-    width: 35%; /* Ocupa el 35% del ancho del contenedor principal */
-    height: 100%; /* Ocupa el 100% de la altura del contenedor principal */
-    background-color: #f0f0f0; /* Color de fondo para distinguir el div */
-    padding: 20px; /* Añade padding si es necesario */
-    box-sizing: border-box; /* Incluye el padding en el ancho y alto */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(20, 156, 234, 0.7);
+    width: 35%;
+    height: 100%;
     background-color: #1a1a1a;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
     box-shadow: inset 0px 0px 25px #1479EA;
     margin-right: 10px;
-    border-style: solid;
-    border-color: #149CEA;
+    border: 2px solid #149CEA;
 }
 
 .carrusel-proyecto-div {
-    width: 65%; /* Ocupa el 65% del ancho del contenedor principal */
-    height: 100%; /* Ocupa el 100% de la altura del contenedor principal */
-    background-color: #d0d0d0; /* Color de fondo para distinguir el div */
-    padding: 20px; /* Añade padding si es necesario */
-    box-sizing: border-box; /* Incluye el padding en el ancho y alto */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(20, 156, 234, 0.7);
+    width: 65%;
+    height: 100%;
     background-color: #1a1a1a;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
     box-shadow: inset 0px 0px 25px #1479EA;
-    border-style: solid;
-    border-color: #149CEA;
+    border: 2px solid #149CEA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.preview-pagina {
+    width: 80%;
+    max-width: 1000px;
+    height: 500px;
+    background-color: rgb(24, 23, 23);
+    border: 4px solid #149CEA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:  0px 0px 25px #1479EA;
+    overflow: hidden;
+}
+
+#preview-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
