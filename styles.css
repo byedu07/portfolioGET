@@ -1,0 +1,213 @@
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables para tema oscuro (predeterminado) */
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #151515;
+    --text-color: #ffffff;
+    --text-secondary: #9ca3af;
+    --accent-color: #6366f1;
+    --border-color: #262626;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --hover-color: #1f1f1f;
+    --gradient: linear-gradient(145deg, #151515, #1a1a1a);
+}
+
+/* Variables para tema claro */
+.light-theme {
+    --bg-color: #ffffff;
+    --card-bg: #f8fafc;
+    --text-color: #1a1a1a;
+    --text-secondary: #4b5563;
+    --accent-color: #6366f1;
+    --border-color: #e5e7eb;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --hover-color: #ffffff;
+    --gradient: linear-gradient(145deg, #f8fafc, #ffffff);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    min-height: 100vh;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    background: var(--gradient);
+    color: var(--text-color);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--shadow);
+    background: var(--accent-color);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.curriculum {
+    flex: 2;
+    background: var(--gradient);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px var(--shadow);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    min-width: 400px;
+}
+
+.perfil-imagen {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: block;
+    background-color: var(--border-color);
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.proyectos {
+    flex: 1.5;
+}
+
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+}
+
+.proyecto-card {
+    background: var(--gradient);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px var(--shadow);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.proyecto-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px var(--shadow);
+    border-color: var(--accent-color);
+}
+
+.proyecto-imagen {
+    width: 100%;
+    height: 180px;
+    background-color: var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, var(--text-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.4em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+p, li {
+    color: var(--text-secondary);
+}
+
+.curriculum-seccion {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.curriculum-seccion:last-child {
+    border-bottom: none;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+}
+
+li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+strong {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin: 20px auto;
+    }
+    
+    .curriculum, .proyecto-card {
+        padding: 20px;
+    }
+}
+
+/* Aseguramos que el tema oscuro sea el predeterminado */
+.dark-theme {
+    --bg-color: #0a0a0a;
+    --card-bg: #151515;
+    --text-color: #ffffff;
+    --text-secondary: #9ca3af;
+    --accent-color: #6366f1;
+    --border-color: #262626;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --hover-color: #1f1f1f;
+    --gradient: linear-gradient(145deg, #151515, #1a1a1a);
+}
