@@ -41,25 +41,65 @@ body {
 }
 
 .theme-toggle {
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 20px;
-    padding: 12px 24px;
-    border: 2px solid var(--accent-color);
-    border-radius: 12px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     background: var(--gradient);
-    color: var(--text-color);
-    font-weight: bold;
+    border: 2px solid var(--border-color);
     cursor: pointer;
-    box-shadow: 0 4px 8px var(--shadow);
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px var(--shadow);
     z-index: 99999;
+    overflow: hidden;
 }
 
 .theme-toggle:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px var(--shadow);
-    background: var(--accent-color);
+    transform: translateY(-2px) scale(1.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 16px var(--shadow),
+                0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.theme-toggle:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.theme-toggle i {
+    font-size: 1.5rem;
+    position: absolute;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--accent-color);
+}
+
+.theme-toggle .sun-icon {
+    opacity: 0;
+    transform: rotate(180deg) scale(0);
+}
+
+.theme-toggle .moon-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+/* Estado del botón en tema claro */
+.light-theme .theme-toggle .sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+}
+
+.light-theme .theme-toggle .moon-icon {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+}
+
+.light-theme .theme-toggle {
+    background: var(--gradient);
 }
 
 .container {
@@ -82,6 +122,21 @@ body {
     min-width: 400px;
 }
 
+@keyframes glowAnimation {
+    0% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        border-color: var(--accent-color);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+        border-color: rgba(99, 102, 241, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        border-color: var(--accent-color);
+    }
+}
+
 .perfil-imagen {
     width: 200px;
     height: 200px;
@@ -91,7 +146,13 @@ body {
     background-color: var(--border-color);
     object-fit: cover;
     border: 4px solid var(--accent-color);
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    animation: glowAnimation 3s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.perfil-imagen:hover {
+    transform: scale(1.05);
+    animation: glowAnimation 1.5s ease-in-out infinite;
 }
 
 .proyectos {
@@ -437,49 +498,82 @@ strong {
 .features-btn {
     background: var(--gradient);
     color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    padding: 10px 16px;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 0.9em;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.features-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+    z-index: 0;
+}
+
+.features-btn:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.1;
 }
 
 .features-btn:hover {
     border-color: var(--accent-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--shadow);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.features-btn:active {
+    transform: translateY(0) scale(0.95);
 }
 
 .features-btn i {
     font-size: 1em;
     color: var(--accent-color);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.features-btn span {
+    z-index: 1;
 }
 
 .features-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 10px);
     right: 0;
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
     padding: 15px;
-    min-width: 250px;
+    min-width: 280px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 50;
-    box-shadow: 0 4px 15px var(--shadow);
+    box-shadow: 0 8px 24px var(--shadow);
+    backdrop-filter: blur(10px);
 }
 
 .features-dropdown.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(5px);
+    transform: translateY(0) scale(1);
 }
 
 .features-list {
@@ -491,24 +585,169 @@ strong {
 .features-list li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+    gap: 12px;
+    padding: 12px;
+    margin: 4px 0;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.features-list li:last-child {
-    border-bottom: none;
+.features-list li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-color);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s;
+    border-radius: 8px;
+}
+
+.features-list li:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.1;
 }
 
 .features-list li:hover {
-    background: var(--hover-color);
-    border-radius: 6px;
+    transform: translateX(5px);
 }
 
 .features-list i {
     color: var(--accent-color);
     font-size: 1.1em;
-    width: 20px;
-    text-align: center;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.features-list li:hover i {
+    transform: scale(1.2);
+}
+
+.features-list span {
+    color: var(--text-secondary);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.features-list li:hover span {
+    color: var(--text-color);
+}
+
+#click-effects-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99999;
+}
+
+@keyframes clickEffect {
+    0% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(0);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(2px);
+    }
+}
+
+@keyframes clickEffectInner {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
+
+.click-effect {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, 
+        var(--accent-color) 0%, 
+        rgba(99, 102, 241, 0.2) 50%, 
+        transparent 100%
+    );
+    border-radius: 50%;
+    animation: clickEffect 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 99999;
+    pointer-events: none;
+    transform-origin: center;
+}
+
+.click-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, 
+        rgba(99, 102, 241, 0.8) 0%, 
+        rgba(99, 102, 241, 0.2) 100%
+    );
+    border-radius: 50%;
+    animation: clickEffectInner 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes particleAnimation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+        filter: blur(1px);
+    }
+}
+
+.click-particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    animation: particleAnimation 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    pointer-events: none;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.click-particle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    filter: blur(2px);
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
 }

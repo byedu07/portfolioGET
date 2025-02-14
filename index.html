@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="dark-theme">
-    <button id="theme-toggle" class="theme-toggle">Cambiar Tema</button>
+    <div id="click-effects-container"></div>
+    <button id="theme-toggle" class="theme-toggle">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+    </button>
     <div class="container">
         <div class="curriculum">
             <img src="imagenes/foroPerf.jpg" alt="Foto de Perfil" class="perfil-imagen">
@@ -65,15 +69,30 @@
                         <h3>Diseño Web</h3>
                         <button class="features-btn" onclick="toggleFeatures(this)">
                             <i class="fas fa-list-ul"></i>
-                            Características
+                            <span>Características</span>
                         </button>
                         <div class="features-dropdown">
                             <ul class="features-list">
-                                <li><i class="fas fa-mobile-alt"></i> Diseño Responsive</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Alto Rendimiento</li>
-                                <li><i class="fas fa-search"></i> SEO Optimizado</li>
-                                <li><i class="fas fa-shield-alt"></i> Seguridad Mejorada</li>
-                                <li><i class="fas fa-paint-brush"></i> Diseño Moderno</li>
+                                <li>
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Diseño Responsive</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Alto Rendimiento</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-search"></i>
+                                    <span>SEO Optimizado</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Seguridad Mejorada</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paint-brush"></i>
+                                    <span>Diseño Moderno</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -94,15 +113,30 @@
                         <h3>Web Peluqueria</h3>
                         <button class="features-btn" onclick="toggleFeatures(this)">
                             <i class="fas fa-list-ul"></i>
-                            Características
+                            <span>Características</span>
                         </button>
                         <div class="features-dropdown">
                             <ul class="features-list">
-                                <li><i class="fas fa-mobile-alt"></i> Diseño Responsive</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Alto Rendimiento</li>
-                                <li><i class="fas fa-search"></i> SEO Optimizado</li>
-                                <li><i class="fas fa-shield-alt"></i> Seguridad Mejorada</li>
-                                <li><i class="fas fa-paint-brush"></i> Diseño Moderno</li>
+                                <li>
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Diseño Responsive</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Alto Rendimiento</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-search"></i>
+                                    <span>SEO Optimizado</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Seguridad Mejorada</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paint-brush"></i>
+                                    <span>Diseño Moderno</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -121,15 +155,30 @@
                         <h3>Web Reforma</h3>
                         <button class="features-btn" onclick="toggleFeatures(this)">
                             <i class="fas fa-list-ul"></i>
-                            Características
+                            <span>Características</span>
                         </button>
                         <div class="features-dropdown">
                             <ul class="features-list">
-                                <li><i class="fas fa-mobile-alt"></i> Diseño Responsive</li>
-                                <li><i class="fas fa-tachometer-alt"></i> Alto Rendimiento</li>
-                                <li><i class="fas fa-search"></i> SEO Optimizado</li>
-                                <li><i class="fas fa-shield-alt"></i> Seguridad Mejorada</li>
-                                <li><i class="fas fa-paint-brush"></i> Diseño Moderno</li>
+                                <li>
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Diseño Responsive</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Alto Rendimiento</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-search"></i>
+                                    <span>SEO Optimizado</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Seguridad Mejorada</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-paint-brush"></i>
+                                    <span>Diseño Moderno</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -142,6 +191,59 @@
         document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('light-theme');
             document.body.classList.toggle('dark-theme');
+        });
+
+        // Efecto de clic
+        document.addEventListener('click', function(e) {
+            const container = document.getElementById('click-effects-container');
+            
+            // Efecto principal de onda
+            const effect = document.createElement('div');
+            effect.className = 'click-effect';
+            effect.style.left = e.clientX + 'px';
+            effect.style.top = e.clientY + 'px';
+            container.appendChild(effect);
+            
+            // Efecto de partículas
+            const particleCount = 6;
+            const colors = [
+                'var(--accent-color)',
+                'rgba(99, 102, 241, 0.8)',
+                'rgba(99, 102, 241, 0.6)'
+            ];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'click-particle';
+                
+                // Color aleatorio de la paleta
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Posición inicial
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                
+                // Dirección aleatoria para cada partícula
+                const angle = (i * (360 / particleCount) + Math.random() * 30) * (Math.PI / 180);
+                const distance = 30 + Math.random() * 30;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                container.appendChild(particle);
+                
+                // Eliminar partícula después de la animación
+                particle.addEventListener('animationend', function() {
+                    particle.remove();
+                });
+            }
+            
+            // Eliminar el efecto principal después de la animación
+            effect.addEventListener('animationend', function() {
+                effect.remove();
+            });
         });
 
         function initCarousels() {
