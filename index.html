@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="dark-theme">
     <button id="theme-toggle" class="theme-toggle">Cambiar Tema</button>
@@ -13,32 +14,31 @@
             <img src="imagenes/foroPerf.jpg" alt="Foto de Perfil" class="perfil-imagen">
             
             <div class="curriculum-seccion">
-                <h1>Juan Pérez</h1>
-                <p>Desarrollador Web Full Stack</p>
+                <h1>George Eduard Turcescu</h1>
+                <p>Desarrollador Web</p>
             </div>
 
             <div class="curriculum-seccion">
-                <h2>Experiencia</h2>
-                <p><strong>Desarrollador Senior - Tech Company</strong></p>
-                <p>2020 - Presente</p>
-                <ul>
-                    <li>Desarrollo de aplicaciones web</li>
-                    <li>Gestión de equipos ágiles</li>
-                    <li>Optimización de rendimiento</li>
-                </ul>
+                <h2>Sobre mí</h2>
+                <p class="descripcion-personal">
+                    Desarrollador con sólida formación en Desarrollo de Aplicaciones Multiplataforma. 
+                    Especializado en tecnologías web modernas y metodologías ágiles, con experiencia en el desarrollo de soluciones escalables y optimización de rendimiento.
+                    Destaco por mi <span class="highlight">capacidad analítica</span>, <span class="highlight">resolución eficiente de problemas</span> y <span class="highlight">adaptabilidad</span> a nuevas tecnologías.
+                    <span class="highlight">Comprometido</span> con el desarrollo de software de alta calidad, la implementación de buenas prácticas y el <span class="highlight">aprendizaje continuo</span> en el campo del desarrollo web y móvil.
+                </p>
             </div>
 
             <div class="curriculum-seccion">
                 <h2>Educación</h2>
-                <p><strong>Ingeniería Informática</strong></p>
-                <p>Universidad Tecnológica - 2019</p>
+                <p><strong>Tecnico Superior en Desarrollo de Aplicaciones Multiplataforma</strong></p>
+                <p>Bachillerato</p>
             </div>
 
             <div class="curriculum-seccion">
                 <h2>Habilidades</h2>
                 <ul>
                     <li>JavaScript / React</li>
-                    <li>Python / Django</li>
+                    <li>C / Python</li>
                     <li>HTML5 / CSS3</li>
                     <li>Node.js</li>
                 </ul>
@@ -49,18 +49,96 @@
             <h2>Mis Proyectos</h2>
             <div class="proyectos-grid">
                 <div class="proyecto-card">
-                    <img src="proyecto1.jpg" alt="Proyecto 1" class="proyecto-imagen">
-                    <h3>Proyecto 1</h3>
-                    <p>Descripción breve del proyecto 1</p>
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            <img src="capDiseñoWeb/1.png" alt="Proyecto 1 - Imagen 1" class="carousel-img active">
+                            <img src="capDiseñoWeb/2.png" alt="Proyecto 1 - Imagen 2" class="carousel-img">
+                            <img src="capDiseñoWeb/3.png" alt="Proyecto 1 - Imagen 3" class="carousel-img">
+                            <img src="capDiseñoWeb/4.png" alt="Proyecto 1 - Imagen 4" class="carousel-img">
+                            <img src="capDiseñoWeb/5.png" alt="Proyecto 1 - Imagen 5" class="carousel-img">
+                            <img src="capDiseñoWeb/6.png" alt="Proyecto 1 - Imagen 6" class="carousel-img">
+                            <img src="capDiseñoWeb/7.png" alt="Proyecto 1 - Imagen 7" class="carousel-img">
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="proyecto-header">
+                        <h3>Diseño Web</h3>
+                        <button class="features-btn" onclick="toggleFeatures(this)">
+                            <i class="fas fa-list-ul"></i>
+                            Características
+                        </button>
+                        <div class="features-dropdown">
+                            <ul class="features-list">
+                                <li><i class="fas fa-mobile-alt"></i> Diseño Responsive</li>
+                                <li><i class="fas fa-tachometer-alt"></i> Alto Rendimiento</li>
+                                <li><i class="fas fa-search"></i> SEO Optimizado</li>
+                                <li><i class="fas fa-shield-alt"></i> Seguridad Mejorada</li>
+                                <li><i class="fas fa-paint-brush"></i> Diseño Moderno</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Pagina para venta de webs</p>
                 </div>
                 <div class="proyecto-card">
-                    <img src="proyecto2.jpg" alt="Proyecto 2" class="proyecto-imagen">
-                    <h3>Proyecto 2</h3>
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            <img src="capDiseñoWeb/1.png" alt="Proyecto 2 - Imagen 1" class="carousel-img active">
+                            <img src="capDiseñoWeb/2.png" alt="Proyecto 2 - Imagen 2" class="carousel-img">
+                            <img src="capDiseñoWeb/3.png" alt="Proyecto 2 - Imagen 3" class="carousel-img">
+                            <img src="capDiseñoWeb/4.png" alt="Proyecto 2 - Imagen 4" class="carousel-img">
+                            <img src="capDiseñoWeb/5.png" alt="Proyecto 2 - Imagen 5" class="carousel-img">
+                            <img src="capDiseñoWeb/6.png" alt="Proyecto 2 - Imagen 6" class="carousel-img">
+                            <img src="capDiseñoWeb/7.png" alt="Proyecto 2 - Imagen 7" class="carousel-img">
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="proyecto-header">
+                        <h3>Web Peluqueria</h3>
+                        <button class="features-btn" onclick="toggleFeatures(this)">
+                            <i class="fas fa-list-ul"></i>
+                            Características
+                        </button>
+                        <div class="features-dropdown">
+                            <ul class="features-list">
+                                <li><i class="fas fa-mobile-alt"></i> Diseño Responsive</li>
+                                <li><i class="fas fa-tachometer-alt"></i> Alto Rendimiento</li>
+                                <li><i class="fas fa-search"></i> SEO Optimizado</li>
+                                <li><i class="fas fa-shield-alt"></i> Seguridad Mejorada</li>
+                                <li><i class="fas fa-paint-brush"></i> Diseño Moderno</li>
+                            </ul>
+                        </div>
+                    </div>
                     <p>Descripción breve del proyecto 2</p>
                 </div>
                 <div class="proyecto-card">
-                    <img src="proyecto3.jpg" alt="Proyecto 3" class="proyecto-imagen">
-                    <h3>Proyecto 3</h3>
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            <img src="capDiseñoWeb/1.png" alt="Proyecto 3 - Imagen 1" class="carousel-img active">
+                            <img src="capDiseñoWeb/2.png" alt="Proyecto 3 - Imagen 2" class="carousel-img">
+                            <img src="capDiseñoWeb/3.png" alt="Proyecto 3 - Imagen 3" class="carousel-img">
+                            <img src="capDiseñoWeb/4.png" alt="Proyecto 3 - Imagen 4" class="carousel-img">
+                            <img src="capDiseñoWeb/5.png" alt="Proyecto 3 - Imagen 5" class="carousel-img">
+                            <img src="capDiseñoWeb/6.png" alt="Proyecto 3 - Imagen 6" class="carousel-img">
+                            <img src="capDiseñoWeb/7.png" alt="Proyecto 3 - Imagen 7" class="carousel-img">
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="proyecto-header">
+                        <h3>Web Reforma</h3>
+                        <button class="features-btn" onclick="toggleFeatures(this)">
+                            <i class="fas fa-list-ul"></i>
+                            Características
+                        </button>
+                        <div class="features-dropdown">
+                            <ul class="features-list">
+                                <li><i class="fas fa-mobile-alt"></i> Diseño Responsive</li>
+                                <li><i class="fas fa-tachometer-alt"></i> Alto Rendimiento</li>
+                                <li><i class="fas fa-search"></i> SEO Optimizado</li>
+                                <li><i class="fas fa-shield-alt"></i> Seguridad Mejorada</li>
+                                <li><i class="fas fa-paint-brush"></i> Diseño Moderno</li>
+                            </ul>
+                        </div>
+                    </div>
                     <p>Descripción breve del proyecto 3</p>
                 </div>
             </div>
@@ -70,6 +148,80 @@
         document.getElementById('theme-toggle').addEventListener('click', () => {
             document.body.classList.toggle('light-theme');
             document.body.classList.toggle('dark-theme');
+        });
+
+        function initCarousels() {
+            const carousels = document.querySelectorAll('.carousel');
+            
+            carousels.forEach(carousel => {
+                const images = carousel.querySelectorAll('.carousel-img');
+                let currentIndex = 0;
+                let intervalId;
+                let isPaused = false;
+
+                function startCarousel() {
+                    if (!isPaused) {
+                        intervalId = setInterval(() => {
+                            if (!isPaused) {
+                                images[currentIndex].classList.remove('active');
+                                currentIndex = (currentIndex + 1) % images.length;
+                                images[currentIndex].classList.add('active');
+                            }
+                        }, 3000);
+                    }
+                }
+
+                // Pausar el carrusel cuando el ratón está sobre una imagen
+                images.forEach(img => {
+                    img.addEventListener('mouseenter', () => {
+                        isPaused = true;
+                        clearInterval(intervalId);
+                    });
+                    
+                    img.addEventListener('mouseleave', () => {
+                        isPaused = false;
+                        startCarousel();
+                    });
+                });
+
+                startCarousel();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initCarousels);
+
+        function toggleFeatures(button) {
+            const dropdown = button.nextElementSibling;
+            const allDropdowns = document.querySelectorAll('.features-dropdown');
+            
+            // Cerrar todos los otros dropdowns
+            allDropdowns.forEach(drop => {
+                if (drop !== dropdown) {
+                    drop.classList.remove('active');
+                }
+            });
+
+            // Toggle del dropdown actual
+            dropdown.classList.toggle('active');
+        }
+
+        // Añadir event listeners para cerrar los dropdowns
+        document.addEventListener('DOMContentLoaded', () => {
+            const proyectoCards = document.querySelectorAll('.proyecto-card');
+            
+            proyectoCards.forEach(card => {
+                const dropdown = card.querySelector('.features-dropdown');
+                
+                // Cerrar cuando el ratón sale de la tarjeta
+                card.addEventListener('mouseleave', () => {
+                    dropdown.classList.remove('active');
+                });
+
+                // Mantener abierto mientras el ratón está sobre el dropdown
+                dropdown.addEventListener('mouseenter', (e) => {
+                    e.stopPropagation();
+                });
+            });
         });
     </script>
 </body>

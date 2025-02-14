@@ -41,7 +41,7 @@ body {
 }
 
 .theme-toggle {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     padding: 12px 24px;
@@ -53,6 +53,7 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 8px var(--shadow);
     transition: all 0.3s ease;
+    z-index: 99999;
 }
 
 .theme-toggle:hover {
@@ -99,25 +100,32 @@ body {
 
 .proyectos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
 }
 
 .proyecto-card {
     background: var(--gradient);
-    padding: 25px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0 8px 16px var(--shadow);
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .proyecto-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 20px var(--shadow);
     border-color: var(--accent-color);
+    z-index: 40;
 }
 
 .proyecto-imagen {
@@ -130,12 +138,123 @@ body {
     box-shadow: 0 4px 8px var(--shadow);
 }
 
+/* Estilos del carrusel */
+.carousel {
+    position: relative;
+    width: 100%;
+    min-height: 180px;
+    height: auto;
+    overflow: visible;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background-color: var(--card-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* Estilos específicos para cada carrusel */
+.proyecto-card:nth-child(1) .carousel { z-index: 3; }
+.proyecto-card:nth-child(2) .carousel { z-index: 2; }
+.proyecto-card:nth-child(3) .carousel { z-index: 1; }
+
+.proyecto-card:nth-child(1) .overlay { z-index: 13; }
+.proyecto-card:nth-child(2) .overlay { z-index: 12; }
+.proyecto-card:nth-child(3) .overlay { z-index: 11; }
+
+.proyecto-card:nth-child(1) .carousel-img.active:hover { z-index: 23; }
+.proyecto-card:nth-child(2) .carousel-img.active:hover { z-index: 22; }
+.proyecto-card:nth-child(3) .carousel-img.active:hover { z-index: 21; }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carousel-img.active:hover ~ .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.carousel-inner {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    min-height: 160px;
+}
+
+.carousel-img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 160px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.carousel-img.active {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+}
+
+.carousel-img.active:hover {
+    position: absolute;
+    transform: scale(2);
+    z-index: 3;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+}
+
+/* Eliminamos el hover general que causa el desvanecimiento */
+.carousel-img:hover {
+    opacity: 0;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 h1 {
     font-size: 2.2em;
     margin-bottom: 10px;
-    background: linear-gradient(to right, var(--text-color), var(--accent-color));
+    background: linear-gradient(
+        90deg,
+        var(--text-color) 0%,
+        var(--accent-color) 50%,
+        var(--text-color) 100%
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 8s ease infinite;
 }
 
 h2 {
@@ -147,11 +266,13 @@ h2 {
 h3 {
     font-size: 1.4em;
     color: var(--text-color);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    padding: 0 10px;
 }
 
 p, li {
     color: var(--text-secondary);
+    padding: 0 10px;
 }
 
 .curriculum-seccion {
@@ -162,6 +283,23 @@ p, li {
 
 .curriculum-seccion:last-child {
     border-bottom: none;
+}
+
+.descripcion-personal {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    padding: 0 10px;
+    margin: 10px 0;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.highlight:hover {
+    filter: brightness(1.2);
 }
 
 ul {
@@ -188,14 +326,90 @@ strong {
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+    .container {
+        max-width: 95%;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
     .container {
         flex-direction: column;
+    }
+
+    .curriculum {
+        min-width: unset;
+    }
+
+    .proyectos {
+        width: 100%;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
         margin: 20px auto;
+        padding: 15px;
     }
     
     .curriculum, .proyecto-card {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .perfil-imagen {
+        width: 150px;
+        height: 150px;
+    }
+
+    .proyectos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel {
+        min-height: 140px;
+    }
+
+    .carousel-inner {
+        min-height: 120px;
+    }
+
+    .carousel-img {
+        max-height: 120px;
+    }
+
+    .carousel-img.active:hover {
+        transform: scale(1.5);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .curriculum, .proyecto-card {
+        padding: 12px;
+    }
+
+    .carousel {
+        min-height: 120px;
+    }
+
+    .carousel-inner {
+        min-height: 100px;
+    }
+
+    .carousel-img {
+        max-height: 100px;
+    }
+
+    .carousel-img.active:hover {
+        transform: scale(1.3);
     }
 }
 
@@ -210,4 +424,91 @@ strong {
     --shadow: rgba(0, 0, 0, 0.5);
     --hover-color: #1f1f1f;
     --gradient: linear-gradient(145deg, #151515, #1a1a1a);
+}
+
+.proyecto-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.features-btn {
+    background: var(--gradient);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.features-btn:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.features-btn i {
+    font-size: 1em;
+    color: var(--accent-color);
+}
+
+.features-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px;
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 50;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.features-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(5px);
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
+}
+
+.features-list li:hover {
+    background: var(--hover-color);
+    border-radius: 6px;
+}
+
+.features-list i {
+    color: var(--accent-color);
+    font-size: 1.1em;
+    width: 20px;
+    text-align: center;
 }
