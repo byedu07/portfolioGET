@@ -66,10 +66,12 @@
                 <div class="curriculum-seccion">
                     <h2>Habilidades</h2>
                     <ul>
-                        <li>JavaScript</li>
-                        <li>SQL</li>
-                        <li>C / Python</li>
-                        <li>HTML5 / CSS3</li>
+                        <li><i class="fab fa-js"></i> JavaScript</li>
+                        <li><i class="fas fa-database"></i> SQL</li>
+                        <li><i class="fas fa-code"></i> C</li>
+                        <li><i class="fab fa-python"></i> Python</li>
+                        <li><i class="fab fa-html5"></i> HTML5</li>
+                        <li><i class="fab fa-css3-alt"></i> CSS3</li>
                     </ul>
                 </div>
             </div>
@@ -320,6 +322,7 @@
         function toggleFeatures(button) {
             const dropdown = button.parentElement.nextElementSibling;
             const allDropdowns = document.querySelectorAll('.features-dropdown, .description-dropdown');
+            const projectCard = button.closest('.proyecto-card');
             
             // Cerrar todos los otros dropdowns
             allDropdowns.forEach(drop => {
@@ -329,12 +332,37 @@
             });
 
             // Toggle del dropdown actual
-            dropdown.classList.toggle('active');
+            dropdown.classList.add('active');
+
+            function handleMouseLeave(e) {
+                const cardRect = projectCard.getBoundingClientRect();
+                const dropRect = dropdown.getBoundingClientRect();
+                
+                const isInCard = e.clientX >= cardRect.left && 
+                                e.clientX <= cardRect.right && 
+                                e.clientY >= cardRect.top && 
+                                e.clientY <= cardRect.bottom;
+                                
+                const isInDropdown = e.clientX >= dropRect.left && 
+                                   e.clientX <= dropRect.right && 
+                                   e.clientY >= dropRect.top && 
+                                   e.clientY <= dropRect.bottom;
+
+                if (!isInCard && !isInDropdown) {
+                    dropdown.classList.remove('active');
+                    projectCard.removeEventListener('mouseleave', handleMouseLeave);
+                    dropdown.removeEventListener('mouseleave', handleMouseLeave);
+                }
+            }
+
+            projectCard.addEventListener('mouseleave', handleMouseLeave);
+            dropdown.addEventListener('mouseleave', handleMouseLeave);
         }
 
         function toggleDescription(button) {
             const dropdown = button.parentElement.nextElementSibling.nextElementSibling;
             const allDropdowns = document.querySelectorAll('.features-dropdown, .description-dropdown');
+            const projectCard = button.closest('.proyecto-card');
             
             // Cerrar todos los otros dropdowns
             allDropdowns.forEach(drop => {
@@ -344,18 +372,32 @@
             });
 
             // Toggle del dropdown actual
-            dropdown.classList.toggle('active');
-        }
+            dropdown.classList.add('active');
 
-        // Añadir event listeners para cerrar los dropdowns
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.proyecto-header')) {
-                const allDropdowns = document.querySelectorAll('.features-dropdown, .description-dropdown');
-                allDropdowns.forEach(dropdown => {
+            function handleMouseLeave(e) {
+                const cardRect = projectCard.getBoundingClientRect();
+                const dropRect = dropdown.getBoundingClientRect();
+                
+                const isInCard = e.clientX >= cardRect.left && 
+                                e.clientX <= cardRect.right && 
+                                e.clientY >= cardRect.top && 
+                                e.clientY <= cardRect.bottom;
+                                
+                const isInDropdown = e.clientX >= dropRect.left && 
+                                   e.clientX <= dropRect.right && 
+                                   e.clientY >= dropRect.top && 
+                                   e.clientY <= dropRect.bottom;
+
+                if (!isInCard && !isInDropdown) {
                     dropdown.classList.remove('active');
-                });
+                    projectCard.removeEventListener('mouseleave', handleMouseLeave);
+                    dropdown.removeEventListener('mouseleave', handleMouseLeave);
+                }
             }
-        });
+
+            projectCard.addEventListener('mouseleave', handleMouseLeave);
+            dropdown.addEventListener('mouseleave', handleMouseLeave);
+        }
 
         // Efecto de clic
         document.addEventListener('click', function(e) {
