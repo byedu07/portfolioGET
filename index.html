@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="dark-theme">
+    <canvas id="particles"></canvas>
     <div id="click-effects-container"></div>
     <button id="theme-toggle" class="theme-toggle">
         <i class="fas fa-sun sun-icon"></i>
@@ -491,6 +492,140 @@
         }
 
         document.addEventListener('DOMContentLoaded', initCarousels);
+
+        // Sistema de partículas
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 50;
+        const baseSize = 2;
+        const baseSpeed = 0.15;
+        const connectionDistance = 200;
+        const mouseRadius = 100;
+
+        let mouse = {
+            x: null,
+            y: null
+        };
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * baseSize + 1;
+                this.speedX = Math.random() * baseSpeed * 2 - baseSpeed;
+                this.speedY = Math.random() * baseSpeed * 2 - baseSpeed;
+                this.life = Math.random() * 100;
+                this.maxLife = 150;
+                this.pulseSpeed = 0.02;
+                this.brightness = Math.random();
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life += this.pulseSpeed;
+
+                this.brightness = 0.5 + Math.sin(this.life) * 0.3;
+
+                if (this.life >= this.maxLife) {
+                    this.life = 0;
+                }
+
+                if (this.x > width || this.x < 0) {
+                    this.speedX *= -0.8;
+                    this.x = Math.max(0, Math.min(width, this.x));
+                }
+                if (this.y > height || this.y < 0) {
+                    this.speedY *= -0.8;
+                    this.y = Math.max(0, Math.min(height, this.y));
+                }
+
+                if (mouse.x) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < mouseRadius) {
+                        const angle = Math.atan2(dy, dx);
+                        const force = (mouseRadius - distance) / mouseRadius;
+                        this.x -= Math.cos(angle) * force;
+                        this.y -= Math.sin(angle) * force;
+                    }
+                }
+            }
+
+            draw() {
+                const baseOpacity = this.brightness * 0.8;
+                ctx.fillStyle = `rgba(99, 102, 241, ${baseOpacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `rgba(99, 102, 241, ${baseOpacity * 0.3})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        const opacity = (1 - distance / connectionDistance) * 0.3 * 
+                                      ((p1.brightness + p2.brightness) / 2);
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+                        ctx.lineWidth = distance < connectionDistance * 0.3 ? 1.5 : 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Event Listeners
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        init();
+        animate();
     </script>
 </body>
 </html>
