@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - George Eduard Turcescu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cv-tradicional.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <canvas id="particles"></canvas>
+    <div id="click-effects-container"></div>
+    <button id="theme-toggle" class="theme-toggle">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+    </button>
+    <div class="cv-container">
+        <div class="cv-header">
+            <img src="imagenes/foroPerf.jpg" alt="Foto de Perfil" class="cv-foto">
+            <div class="cv-info-principal">
+                <h1>George Eduard Turcescu</h1>
+                <h2>Desarrollador Multiplataforma</h2>
+                <div class="cv-contacto">
+                    <p><i class="fas fa-phone"></i> 643028090</p>
+                    <p><i class="fas fa-envelope"></i> georgeeduard.tp@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Madrid, 28044</p>
+                </div>
+            </div>
+            <a href="index.html" class="volver-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Volver al Portfolio</span>
+            </a>
+        </div>
+
+        <div class="cv-grid">
+            <div class="cv-columna">
+                <section class="cv-seccion">
+                    <h3>Sobre mí</h3>
+                    <p>Desarrollador con sólida formación en Desarrollo de Aplicaciones Multiplataforma. 
+                    Especializado en tecnologías web modernas y metodologías ágiles, con experiencia en el desarrollo 
+                    de soluciones escalables y optimización de rendimiento.</p>
+                </section>
+
+                <section class="cv-seccion">
+                    <h3>Educación</h3>
+                    <div class="cv-item">
+                        <h4>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma</h4>
+                        <p class="cv-subtitulo">FP SUMMA - Formación Profesional Grado Superior</p>
+                    </div>
+                    <div class="cv-item">
+                        <h4>Bachillerato</h4>
+                        <p class="cv-subtitulo">Institución La Salle</p>
+                    </div>
+                </section>
+
+                <section class="cv-seccion">
+                    <h3>Habilidades Técnicas</h3>
+                    <ul class="cv-habilidades">
+                        <li><i class="fab fa-js"></i> JavaScript</li>
+                        <li><i class="fas fa-database"></i> SQL</li>
+                        <li><i class="fas fa-code"></i> C</li>
+                        <li><i class="fab fa-python"></i> Python</li>
+                        <li><i class="fab fa-html5"></i> HTML5</li>
+                        <li><i class="fab fa-css3-alt"></i> CSS3</li>
+                    </ul>
+                </section>
+            </div>
+
+            <div class="cv-columna">
+                <section class="cv-seccion">
+                    <h3>Idiomas</h3>
+                    <ul class="cv-idiomas">
+                        <li><i class="fas fa-language"></i> <strong>Español:</strong> Nativo</li>
+                        <li><i class="fas fa-language"></i> <strong>Rumano:</strong> Nativo</li>
+                        <li><i class="fas fa-language"></i> <strong>Inglés:</strong> B2</li>
+                    </ul>
+                </section>
+
+                <section class="cv-seccion">
+                    <h3>Datos Adicionales</h3>
+                    <ul class="cv-datos">
+                        <li><i class="fas fa-car"></i> Carnet de conducir y vehículo propio</li>
+                        <li><i class="fas fa-laptop-code"></i> Disponibilidad inmediata</li>
+                        <li><i class="fas fa-users"></i> Trabajo en equipo</li>
+                        <li><i class="fas fa-brain"></i> Capacidad analítica</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            document.body.classList.toggle('dark-theme');
+        });
+
+        // Efecto de clic
+        document.addEventListener('click', function(e) {
+            const container = document.getElementById('click-effects-container');
+            
+            // Efecto principal de onda
+            const effect = document.createElement('div');
+            effect.className = 'click-effect';
+            effect.style.left = e.clientX + 'px';
+            effect.style.top = e.clientY + 'px';
+            container.appendChild(effect);
+            
+            // Efecto de partículas
+            const particleCount = 6;
+            const colors = [
+                'var(--accent-color)',
+                'rgba(99, 102, 241, 0.8)',
+                'rgba(99, 102, 241, 0.6)'
+            ];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'click-particle';
+                
+                // Color aleatorio de la paleta
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Posición inicial
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                
+                // Dirección aleatoria para cada partícula
+                const angle = (i * (360 / particleCount) + Math.random() * 30) * (Math.PI / 180);
+                const distance = 30 + Math.random() * 30;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                container.appendChild(particle);
+                
+                // Eliminar partícula después de la animación
+                particle.addEventListener('animationend', function() {
+                    particle.remove();
+                });
+            }
+            
+            // Eliminar el efecto principal después de la animación
+            effect.addEventListener('animationend', function() {
+                effect.remove();
+            });
+        });
+
+        // Sistema de partículas
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 50;
+        const baseSize = 2;
+        const baseSpeed = 0.15;
+        const connectionDistance = 200;
+        const mouseRadius = 100;
+
+        let mouse = {
+            x: null,
+            y: null
+        };
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * baseSize + 1;
+                this.speedX = Math.random() * baseSpeed * 2 - baseSpeed;
+                this.speedY = Math.random() * baseSpeed * 2 - baseSpeed;
+                this.life = Math.random() * 100;
+                this.maxLife = 150;
+                this.pulseSpeed = 0.02;
+                this.brightness = Math.random();
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life += this.pulseSpeed;
+
+                this.brightness = 0.5 + Math.sin(this.life) * 0.3;
+
+                if (this.life >= this.maxLife) {
+                    this.life = 0;
+                }
+
+                if (this.x > width || this.x < 0) {
+                    this.speedX *= -0.8;
+                    this.x = Math.max(0, Math.min(width, this.x));
+                }
+                if (this.y > height || this.y < 0) {
+                    this.speedY *= -0.8;
+                    this.y = Math.max(0, Math.min(height, this.y));
+                }
+
+                if (mouse.x) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < mouseRadius) {
+                        const angle = Math.atan2(dy, dx);
+                        const force = (mouseRadius - distance) / mouseRadius;
+                        this.x -= Math.cos(angle) * force;
+                        this.y -= Math.sin(angle) * force;
+                    }
+                }
+            }
+
+            draw() {
+                const baseOpacity = this.brightness * 0.8;
+                ctx.fillStyle = `rgba(99, 102, 241, ${baseOpacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = `rgba(99, 102, 241, ${baseOpacity * 0.3})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < connectionDistance) {
+                        const opacity = (1 - distance / connectionDistance) * 0.3 * 
+                                      ((p1.brightness + p2.brightness) / 2);
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+                        ctx.lineWidth = distance < connectionDistance * 0.3 ? 1.5 : 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Event Listeners
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html> 
