@@ -106,13 +106,12 @@ body {
     max-width: 1400px;
     margin: 40px auto;
     padding: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 400px 1fr;
     gap: 40px;
-    justify-content: space-between;
 }
 
 .curriculum {
-    flex: 2;
     background: var(--gradient);
     padding: 30px;
     border-radius: 20px;
@@ -120,6 +119,64 @@ body {
     border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
     min-width: 400px;
+}
+
+.curriculum-continuacion {
+    width: 100%;
+    background: var(--gradient);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px var(--shadow);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    margin-bottom: 40px;
+}
+
+.curriculum-continuacion .curriculum-seccion {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.curriculum-continuacion .curriculum-seccion:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.curriculum-continuacion .experiencia-item {
+    margin-top: 20px;
+}
+
+.curriculum-continuacion .experiencia-item h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.curriculum-continuacion .experiencia-item p {
+    margin-bottom: 10px;
+}
+
+.curriculum-continuacion .experiencia-item i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.curriculum-continuacion .experiencia-item ul {
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+.curriculum-continuacion .experiencia-item li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.curriculum-continuacion .experiencia-item li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: -20px;
 }
 
 @keyframes glowAnimation {
@@ -156,7 +213,9 @@ body {
 }
 
 .proyectos {
-    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
 .proyectos-grid {
@@ -396,7 +455,7 @@ strong {
 
 @media (max-width: 992px) {
     .container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     .curriculum {
@@ -493,9 +552,15 @@ strong {
     justify-content: space-between;
     margin-bottom: 10px;
     position: relative;
+    flex-wrap: wrap;
 }
 
-.features-btn {
+.buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.features-btn, .description-btn {
     background: var(--gradient);
     color: var(--text-color);
     border: 2px solid var(--border-color);
@@ -511,7 +576,7 @@ strong {
     overflow: hidden;
 }
 
-.features-btn::before {
+.features-btn::before, .description-btn::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -526,12 +591,12 @@ strong {
     z-index: 0;
 }
 
-.features-btn:hover::before {
+.features-btn:hover::before, .description-btn:hover::before {
     transform: translate(-50%, -50%) scale(1);
     opacity: 0.1;
 }
 
-.features-btn:hover {
+.features-btn:hover, .description-btn:hover {
     border-color: var(--accent-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px var(--shadow);
@@ -552,7 +617,7 @@ strong {
     z-index: 1;
 }
 
-.features-dropdown {
+.features-dropdown, .description-dropdown {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
@@ -570,10 +635,37 @@ strong {
     backdrop-filter: blur(10px);
 }
 
-.features-dropdown.active {
+.description-dropdown {
+    width: 100%;
+}
+
+.description-dropdown.active, .features-dropdown.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
+}
+
+.description-dropdown p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.description-dropdown ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.description-dropdown li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.description-dropdown li::before {
+    content: "•";
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
 }
 
 .features-list {
