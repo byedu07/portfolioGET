@@ -1,3 +1,3 @@
 # portfolioGET
 
-https://georgeeduardtp.github.io/portfolioGET/
+https://georgeeduardtp.github.io/portfolioget/
